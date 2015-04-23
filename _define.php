@@ -22,7 +22,7 @@ $this->registerModule(
 		'permissions' => 'usage,contentadmin',
 		'type' => 'plugin',
 		'dc_min' => '2.7',
-		'support' => 'http://lab.dotclear.org/wiki/plugin/lunarPhase',
+		'support' => 'http://forum.dotclear.org/viewtopic.php?pid=332971#p332971',
 		'details' => 'http://plugins.dotaddict.org/dc2/details/lunarPhase'
 	)
 );
