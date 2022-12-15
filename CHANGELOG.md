@@ -1,15 +1,18 @@
-v1.5 (23/04/2015) Pierre Van Glabeke :
-modification url support
+1.6 - 2022.12.15
+- update to dotclear 2.24
 
-v1.4 (06/02/2015) Pierre Van Glabeke :
-modifications localisation
+1.5 - 2015.04.23 - Pierre Van Glabeke :
+- modification url support
 
-v1.3 (14/12/2014) Pierre Van Glabeke :
-compatibilité dc2.7
+1.4 - 2015.02.06 - Pierre Van Glabeke :
+- modifications localisation
 
-v1.2 (17/02/2014) :
-reprise par Pierre Van Glabeke
-correction bug (waning_crescent_moon)
-images refaites (merci à 999Diaoul)
-compatibilité dc2.6
-fin de ligne unix
+1.3 - 2014.12.14 - Pierre Van Glabeke :
+- compatibilité dc2.7
+
+1.2 2014.02.17 :
+- reprise par Pierre Van Glabeke
+- correction bug (waning_crescent_moon)
+- images refaites (merci à 999Diaoul)
+- compatibilité dc2.6
+- fin de ligne unix
