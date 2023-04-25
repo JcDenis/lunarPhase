@@ -7,16 +7,45 @@
  *
  * @author Tomtom, Pierre Van Glabeke and Contributors
  *
- * @copyright Jean-Crhistian Denis
+ * @copyright Jean-Christian Denis
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return null;
+declare(strict_types=1);
+
+namespace Dotclear\Plugin\lunarPhase;
+
+use dcCore;
+use dcNsProcess;
+use dcUtils;
+
+class Frontend extends dcNsProcess
+{
+    public static function init(): bool
+    {
+        static::$init = My::phpCompliant();
+
+        return static::$init;
+    }
+
+    public static function process(): bool
+    {
+        if (!static::$init) {
+            return false;
+        }
+
+        dcCore::app()->addBehaviors([
+            // Add public header for lunarphase css
+            'publicHeadContent' => function (): void {
+                if (is_null(dcCore::app()->blog)) {
+                    return;
+                }
+
+                echo dcUtils::cssLoad(dcCore::app()->blog->url . dcCore::app()->url->getURLFor('lunarphase'));
+            },
+            // Widgets
+            'initWidgets' => [Widgets::class, 'initWidgets'],
+        ]);
+
+        return true;
+    }
 }
-
-require __DIR__ . '/_widgets.php';
-
-// Add public header for lunarphase css
-dcCore::app()->addBehavior('publicHeadContent', function () {
-    echo dcUtils::cssLoad(dcCore::app()->blog->url . dcCore::app()->url->getURLFor('lunarphase'));
-});

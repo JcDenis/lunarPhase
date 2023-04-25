@@ -7,44 +7,57 @@
  *
  * @author Tomtom, Pierre Van Glabeke and Contributors
  *
- * @copyright Jean-Crhistian Denis
+ * @copyright Jean-Christian Denis
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return null;
-}
+declare(strict_types=1);
 
-Clearbricks::lib()->autoload(['lunarPhase' => __DIR__ . '/inc/class.lunarphase.php']);
+namespace Dotclear\Plugin\lunarPhase;
 
-// Register lunarphase CSS URL
-dcCore::app()->url->register(
-    'lunarphase',
-    'lunarphase.css',
-    '^lunarphase\.css',
-    function ($args) {
-        $phases = [
-            'new_moon'             => 'nm',
-            'waxing_crescent_moon' => 'wcm1',
-            'first_quarter_moon'   => 'fqm',
-            'waxing_gibbous_moon'  => 'wgm1',
-            'full_moon'            => 'fm',
-            'waning_gibbous_moon'  => 'wgm2',
-            'last_quarter_moon'    => 'tqm',
-            'waning_crescent_moon' => 'wcm2',
-        ];
+use dcCore;
+use dcNsProcess;
 
-        header('Content-Type: text/css; charset=UTF-8');
-        echo "/* lunarphase widget style */\n";
+class Prepend extends dcNsProcess
+{
+    public static function init(): bool
+    {
+        static::$init = My::phpCompliant();
 
-        foreach ($phases as $phase => $image) {
-            echo
-            sprintf(
-                '#sidebar .lunarphase ul li.%s{background:transparent url(%s) no-repeat left 0.2em;padding-left:2em;}',
-                $phase,
-                dcCore::app()->blog->getPF(basename(__dir__) . '/img/' . $image . '.png')
-            ) . "\n";
+        return static::$init;
+    }
+
+    public static function process(): bool
+    {
+        if (!static::$init) {
+            return false;
         }
 
-        exit;
+        // Register lunarphase CSS URL
+        dcCore::app()->url->register(
+            'lunarphase',
+            'lunarphase.css',
+            '^lunarphase\.css',
+            function (?string $args): void {
+                // avoid null warning
+                if (is_null(dcCore::app()->blog)) {
+                    return;
+                }
+
+                header('Content-Type: text/css; charset=UTF-8');
+                echo "/* lunarphase widget style */\n";
+
+                foreach (My::LUNAR_PHASES as $phase => $image) {
+                    echo sprintf(
+                        "#sidebar .lunarphase ul li.%s{background:transparent url(%s) no-repeat left 0.2em;padding-left:2em;}\n",
+                        $phase,
+                        dcCore::app()->blog->getPF(My::id() . '/img/' . $image)
+                    );
+                }
+
+                exit;
+            }
+        );
+
+        return true;
     }
-);
+}

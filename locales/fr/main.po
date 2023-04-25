@@ -10,14 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "LunarPhase: moon phases"
-msgstr "LunarPhase : phases de la Lune"
+msgid "Moon phases"
+msgstr "Phases de la Lune"
 
 msgid "Display the moon phases"
 msgstr "Afficher les phases de la Lune et autres données"
-
-msgid "Moon phases"
-msgstr "Phases de la Lune"
 
 msgid "Display actual phase of moon"
 msgstr "Afficher la phase actuelle de la Lune"

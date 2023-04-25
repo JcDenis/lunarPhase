@@ -7,14 +7,16 @@
  *
  * @author Tomtom, Pierre Van Glabeke and Contributors
  *
- * @copyright Jean-Crhistian Denis
+ * @copyright Jean-Christian Denis
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return null;
-}
+declare(strict_types=1);
 
-class lunarPhase
+namespace Dotclear\Plugin\lunarPhase;
+
+use ArrayObject;
+
+class LunarPhase
 {
     # Astronomical constants.
     public const epoch = 2444238.5;							# 1980 January 0.0
@@ -37,8 +39,8 @@ class lunarPhase
     public const mParallax = 0.9507;								# parallax at distance a from Earth
     public const synodic   = 29.53058868;							# synodic month (new Moon to new Moon)
 
-    protected $live;
-    protected $previsions;
+    protected ArrayObject $live;
+    protected ArrayObject $previsions;
 
     public function __construct()
     {
@@ -49,17 +51,17 @@ class lunarPhase
         $this->setPrevisions();
     }
 
-    public function getLive()
+    public function getLive(): ArrayObject
     {
         return $this->live;
     }
 
-    public function getPrevisions()
+    public function getPrevisions(): ArrayObject
     {
         return $this->previsions;
     }
 
-    private function setLive()
+    private function setLive(): void
     {
         $day = $this->jTime(time()) - self::epoch;
 
@@ -104,7 +106,7 @@ class lunarPhase
         $this->setPhase();
     }
 
-    private function setPhase()
+    private function setPhase(): void
     {
         if ($this->live['age'] >= self::synodic || $this->live['age'] <= self::synodic / 8) {
             $this->live['id']   = 'new_moon';
@@ -133,7 +135,7 @@ class lunarPhase
         }
     }
 
-    private function setPrevisions()
+    private function setPrevisions(): void
     {
         $ts_day     = 24                          * 60 * 60;
         $ts_synodic = self::synodic               * $ts_day;
@@ -173,27 +175,27 @@ class lunarPhase
         ];
     }
 
-    private function fixAngle($x)
+    private function fixAngle(float $x): float
     {
         return ($x - 360.0 * (floor($x / 360.0)));
     }
 
-    private function toRad($x)
+    private function toRad(float $x): float
     {
         return ($x * (M_PI / 180.0));
     }
 
-    private function toDeg($x)
+    private function toDeg(float $x): float
     {
         return ($x * (180.0 / M_PI));
     }
 
-    private function jTime($t)
+    private function jTime(float $t): float
     {
         return ($t / 86400) + 2440587.5;
     }
 
-    private function kepler($m, $ecc)
+    private function kepler(float $m, float $ecc): float
     {
         $delta   = null;
         $EPSILON = 1e-6;

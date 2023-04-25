@@ -7,23 +7,27 @@
  *
  * @author Tomtom, Pierre Van Glabeke and Contributors
  *
- * @copyright Jean-Crhistian Denis
+ * @copyright Jean-Christian Denis
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return null;
-}
+declare(strict_types=1);
 
-dcCore::app()->addBehavior('initWidgets', ['lunarPhaseWidgets','initWidgets']);
+namespace Dotclear\Plugin\lunarPhase;
 
-class lunarPhaseWidgets
+use dcCore;
+use Dotclear\Helper\Date;
+use Dotclear\Helper\Html\Html;
+use Dotclear\Plugin\widgets\WidgetsStack;
+use Dotclear\Plugin\widgets\WidgetsElement;
+
+class Widgets
 {
-    public static function initWidgets($w)
+    public static function initWidgets(WidgetsStack $w): void
     {
         $w->create(
             'lunarphase',
-            __('LunarPhase: moon phases'),
-            ['lunarPhaseWidgets','widget'],
+            __('Moon phases'),
+            [self::class, 'parseWidget'],
             null,
             __('Display the moon phases')
         )
@@ -43,36 +47,33 @@ class lunarPhaseWidgets
         ->addOffline();
     }
 
-    public static function widget($w)
+    public static function parseWidget(WidgetsElement $w): string
     {
-        if ($w->offline) {
-            return;
+        if ($w->offline || !$w->checkHomeOnly(dcCore::app()->url->type)) {
+            return '';
         }
 
-        if (!$w->checkHomeOnly(dcCore::app()->url->type)) {
-            return;
-        }
-
-        $lp = new lunarPhase();
+        $lp = new LunarPhase();
 
         return $w->renderDiv(
-            $w->content_only,
+            (bool) $w->content_only,
             'lunarphase ' . $w->class,
             '',
-            ($w->title ? $w->renderTitle(html::escapeHTML($w->title)) : '') .
+            ($w->title ? $w->renderTitle(Html::escapeHTML($w->title)) : '') .
             self::getLive($w, $lp) .
             self::getPrevisions($w, $lp)
         );
     }
 
     /**
-     * Returns "live" part of lunarphase widget
+     * Returns "live" part of lunarphase widget.
      *
-     * @param	dcWidget      $w   dcWidget object
-     * @param	lunarPhase    $lp  lunarPhase object
-     * @return	string   Live HTML part
+     * @param   WidgetsElement  $w      Widget instance
+     * @param   LunarPhase      $lp     LunarPhase instance
+     *
+     * @return  string  Live HTML part
      */
-    public static function getLive($w, $lp)
+    public static function getLive(WidgetsElement $w, LunarPhase $lp): string
     {
         $li   = '<li class="%2$s">%1$s</li>';
         $live = $lp->getLive();
@@ -166,13 +167,14 @@ class lunarPhaseWidgets
     }
 
     /**
-     * Returns "previsions" part of lunarphase widget
+     * Returns "previsions" part of lunarphase widget.
      *
-     * @param   dcWidget    $w   dcWidget object
-     * @param   lunarPhase  $lp  lunarPhase object
-     * @return	string   Previsions HTML part
+     * @param   WidgetsElement  $w      Widget instance
+     * @param   LunarPhase      $lp     LunarPhase instance
+     *
+     * @return  string  Previsions HTML part
      */
-    public static function getPrevisions($w, $lp)
+    public static function getPrevisions(WidgetsElement $w, LunarPhase $lp): string
     {
         $li  = '<li class="%s" title="%s">%s</li>';
         $res = '';
@@ -189,24 +191,29 @@ class lunarPhaseWidgets
     }
 
     /**
-     * Returns value passed in argument with a correct format
+     * Returns value passed in argument with a correct format.
      *
      * @param   string  $type   Type of convertion
      * @param   mixed   $value  Value to convert
-     * @return	mixed    Converted value
+     *
+     * @return  mixed   Converted value
      */
-    public static function formatValue($type, $value)
+    public static function formatValue(string $type, mixed $value): mixed
     {
+        if (is_null(dcCore::app()->blog)) {
+            return null;
+        }
+
         $res    = '';
-        $format = dcCore::app()->blog->settings->system->date_format . ' - ';
-        $format .= dcCore::app()->blog->settings->system->time_format;
-        $tz = dcCore::app()->blog->settings->system->blog_timezone;
+        $format = dcCore::app()->blog->settings->get('system')->get('date_format') . ' - ';
+        $format .= dcCore::app()->blog->settings->get('system')->get('time_format');
+        $tz = dcCore::app()->blog->settings->get('system')->get('blog_timezone');
 
         return match ($type) {
             'int'     => number_format($value, 0),
             'float'   => number_format($value, 2),
             'percent' => number_format($value * 100, 0),
-            'date'    => dt::str($format, $value, $tz),
+            'date'    => Date::str($format, (int) $value, $tz),
             'deg'     => number_format(($value * (180.0 / M_PI)), 2),
             default   => $value,
         };
