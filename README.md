@@ -3,7 +3,7 @@
 [![Release](https://img.shields.io/github/v/release/JcDenis/lunarPhase)](https://github.com/JcDenis/lunarPhase/releases)
 [![Date](https://img.shields.io/github/release-date/JcDenis/lunarPhase)](https://github.com/JcDenis/lunarPhase/releases)
 [![Issues](https://img.shields.io/github/issues/JcDenis/lunarPhase)](https://github.com/JcDenis/lunarPhase/issues)
-[![Dotclear](https://img.shields.io/badge/dotclear-v2.24-blue.svg)](https://fr.dotclear.org/download)
+[![Dotclear](https://img.shields.io/badge/dotclear-v2.26-blue.svg)](https://fr.dotclear.org/download)
 [![Dotaddict](https://img.shields.io/badge/dotaddict-official-green.svg)](https://plugins.dotaddict.org/dc2/details/lunarPhase)
 [![License](https://img.shields.io/github/license/JcDenis/lunarPhase)](https://github.com/JcDenis/lunarPhase/blob/master/LICENSE)
 

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="lunarPhase">
-    <name>lunarPhase</name>
-    <version>1.6</version>
+    <name>Moon phases</name>
+    <version>1.7</version>
     <author>Tomtom, Pierre Van Glabeke and Contributors</author>
     <desc>Display the moon phases on a widget</desc>
-    <file>https://github.com/JcDenis/lunarPhase/releases/download/v1.6/plugin-lunarPhase.zip</file>
-    <da:dcmin>2.24</da:dcmin>
+    <file>https://github.com/JcDenis/lunarPhase/releases/download/v1.7/plugin-lunarPhase.zip</file>
+    <da:dcmin>2.26</da:dcmin>
     <da:details>https://plugins.dotaddict.org/dc2/details/lunarPhase</da:details>
     <da:support>http://forum.dotclear.org/viewtopic.php?pid=332971#p332971</da:support>
   </module>
