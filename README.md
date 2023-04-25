@@ -19,7 +19,7 @@ It shows lunar phases on a widget.
  _lunarPhase_ requires: 
 
   * content admin permissions to manage widgets
-  * Dotclear 2.24
+  * Dotclear 2.26
 
 ## USAGE
 
@@ -30,7 +30,7 @@ You should add widget to show lunar phases on your blog.
 
 ## LINKS
 
- * License : [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html)
+ * License : [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * Source & contribution : [GitHub Page](https://github.com/JcDenis/lunarPhase)
  * Packages & details : [Dotaddict Page](https://plugins.dotaddict.org/dc2/details/lunarPhase)
  * Discuss and help : [Dotclear Forum](http://forum.dotclear.org/viewtopic.php?pid=332971#p332971)
