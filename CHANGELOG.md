@@ -1,3 +1,7 @@
+1.7.1 - 2023.05.13
+- require dotclear 2.26
+- cosmetic cleanup for dc2.26 stable
+
 1.7 - 2023.04.25
 - require dotclear 2.26
 - use namespace

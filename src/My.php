@@ -21,7 +21,7 @@ use dcCore;
  */
 class My
 {
-    /** @var    array   List of lunar phase => image */
+    /** @var    array<string,string>    List of lunar phase => image */
     public const LUNAR_PHASES = [
         'new_moon'             => 'nm.png',
         'waxing_crescent_moon' => 'wcm1.png',
