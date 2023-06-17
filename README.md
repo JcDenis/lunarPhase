@@ -20,6 +20,7 @@ It shows lunar phases on a widget.
 
   * content admin permissions to manage widgets
   * Dotclear 2.26
+  * require PHP 8.1+
 
 ## USAGE
 

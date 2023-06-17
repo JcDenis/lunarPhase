@@ -1,3 +1,7 @@
+1.7.2 - 2023.06.17
+- require dotclear 2.26
+- fix require php 8.1
+
 1.7.1 - 2023.05.13
 - require dotclear 2.26
 - cosmetic cleanup for dc2.26 stable
