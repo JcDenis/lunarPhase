@@ -18,7 +18,7 @@ $this->registerModule(
     'Moon phases',
     'Display the moon phases on a widget',
     'Tomtom, Pierre Van Glabeke and Contributors',
-    '1.7.1',
+    '1.7.2',
     [
         'requires' => [
             ['php', '8.1'],
