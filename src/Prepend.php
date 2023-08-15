@@ -15,20 +15,18 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\lunarPhase;
 
 use dcCore;
-use dcNsProcess;
+use Dotclear\Core\Process;
 
-class Prepend extends dcNsProcess
+class Prepend extends Process
 {
     public static function init(): bool
     {
-        static::$init = defined('DC_RC_PATH');
-
-        return static::$init;
+        return self::status(My::checkContext(My::PREPEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
@@ -38,11 +36,6 @@ class Prepend extends dcNsProcess
             'lunarphase.css',
             '^lunarphase\.css',
             function (?string $args): void {
-                // avoid null warning
-                if (is_null(dcCore::app()->blog)) {
-                    return;
-                }
-
                 header('Content-Type: text/css; charset=UTF-8');
                 echo "/* lunarphase widget style */\n";
 
@@ -50,7 +43,7 @@ class Prepend extends dcNsProcess
                     echo sprintf(
                         "#sidebar .lunarphase ul li.%s{background:transparent url(%s) no-repeat left 0.2em;padding-left:2em;}\n",
                         $phase,
-                        dcCore::app()->blog->getPF(My::id() . '/img/' . $image)
+                        My::fileURL('img/' . $image)
                     );
                 }
 

@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\lunarPhase;
 
-use dcCore;
+use Dotclear\Module\MyPlugin;
 
 /**
  * This module definitions.
  */
-class My
+class My extends MyPlugin
 {
     /** @var    array<string,string>    List of lunar phase => image */
     public const LUNAR_PHASES = [
@@ -32,30 +32,4 @@ class My
         'last_quarter_moon'    => 'tqm.png',
         'waning_crescent_moon' => 'wcm2.png',
     ];
-
-    /**
-     * This module id.
-     */
-    public static function id(): string
-    {
-        return basename(dirname(__DIR__));
-    }
-
-    /**
-     * This module name.
-     */
-    public static function name(): string
-    {
-        $name = dcCore::app()->plugins->moduleInfo(self::id(), 'name');
-
-        return __(is_string($name) ? $name : self::id());
-    }
-
-    /**
-     * This module path.
-     */
-    public static function path(): string
-    {
-        return dirname(__DIR__);
-    }
 }
