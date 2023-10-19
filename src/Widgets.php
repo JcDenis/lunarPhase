@@ -1,25 +1,23 @@
 <?php
-/**
- * @brief lunarPhase, a plugin for Dotclear 2
- *
- * @package Dotclear
- * @subpackage Plugin
- *
- * @author Tomtom, Pierre Van Glabeke and Contributors
- *
- * @copyright Jean-Christian Denis
- * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
- */
+
 declare(strict_types=1);
 
 namespace Dotclear\Plugin\lunarPhase;
 
-use dcCore;
+use Dotclear\App;
 use Dotclear\Helper\Date;
 use Dotclear\Helper\Html\Html;
 use Dotclear\Plugin\widgets\WidgetsStack;
 use Dotclear\Plugin\widgets\WidgetsElement;
 
+/**
+ * @brief       lunarPhase widgets class.
+ * @ingroup     lunarPhase
+ *
+ * @author      Tomtom (author)
+ * @author      Jean-Christian Denis (latest)
+ * @copyright   GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ */
 class Widgets
 {
     public static function initWidgets(WidgetsStack $w): void
@@ -27,7 +25,7 @@ class Widgets
         $w->create(
             'lunarphase',
             __('Moon phases'),
-            [self::class, 'parseWidget'],
+            self::parseWidget(...),
             null,
             __('Display the moon phases')
         )
@@ -49,7 +47,7 @@ class Widgets
 
     public static function parseWidget(WidgetsElement $w): string
     {
-        if ($w->offline || !$w->checkHomeOnly(dcCore::app()->url->type)) {
+        if ($w->offline || !$w->checkHomeOnly(App::url()->type)) {
             return '';
         }
 
@@ -200,14 +198,14 @@ class Widgets
      */
     public static function formatValue(string $type, mixed $value): mixed
     {
-        if (is_null(dcCore::app()->blog)) {
+        if (!App::blog()->isDefined()) {
             return null;
         }
 
         $res    = '';
-        $format = dcCore::app()->blog->settings->get('system')->get('date_format') . ' - ';
-        $format .= dcCore::app()->blog->settings->get('system')->get('time_format');
-        $tz = dcCore::app()->blog->settings->get('system')->get('blog_timezone');
+        $format = App::blog()->settings()->get('system')->get('date_format') . ' - ';
+        $format .= App::blog()->settings()->get('system')->get('time_format');
+        $tz = App::blog()->settings()->get('system')->get('blog_timezone');
 
         return match ($type) {
             'int'     => number_format($value, 0),

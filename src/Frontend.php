@@ -1,23 +1,20 @@
 <?php
-/**
- * @brief lunarPhase, a plugin for Dotclear 2
- *
- * @package Dotclear
- * @subpackage Plugin
- *
- * @author Tomtom, Pierre Van Glabeke and Contributors
- *
- * @copyright Jean-Christian Denis
- * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
- */
+
 declare(strict_types=1);
 
 namespace Dotclear\Plugin\lunarPhase;
 
-use dcCore;
-use dcUtils;
+use Dotclear\App;
 use Dotclear\Core\Process;
 
+/**
+ * @brief       lunarPhase frontend class.
+ * @ingroup     lunarPhase
+ *
+ * @author      Tomtom (author)
+ * @author      Jean-Christian Denis (latest)
+ * @copyright   GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ */
 class Frontend extends Process
 {
     public static function init(): bool
@@ -31,17 +28,15 @@ class Frontend extends Process
             return false;
         }
 
-        dcCore::app()->addBehaviors([
+        App::behavior()->addBehaviors([
             // Add public header for lunarphase css
             'publicHeadContent' => function (): void {
-                if (is_null(dcCore::app()->blog)) {
-                    return;
+                if (App::blog()->isDefined()) {
+                    echo App::plugins()->cssLoad(App::blog()->url() . App::url()->getURLFor('lunarphase'));
                 }
-
-                echo dcUtils::cssLoad(dcCore::app()->blog->url . dcCore::app()->url->getURLFor('lunarphase'));
             },
             // Widgets
-            'initWidgets' => [Widgets::class, 'initWidgets'],
+            'initWidgets' => Widgets::initWidgets(...),
         ]);
 
         return true;
