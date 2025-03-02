@@ -4,7 +4,7 @@
 ![Date](https://img.shields.io/github/release-date/jcdenis/lunarPhase?color=red)
 [![Dotclear](https://img.shields.io/badge/dotclear-v2.33-137bbb.svg)](https://fr.dotclear.org/download)
 [![Dotaddict](https://img.shields.io/badge/dotaddict-official-9ac123.svg)](https://plugins.dotaddict.org/dc2/details/lunarPhase)
-[![License](https://img.shields.io/github/license/jcdenis/lunarPhase?color=white)](https://github.com/JcDenis/lunarPhase/src/branch/master/LICENSE)
+[![License](https://img.shields.io/github/license/jcdenis/lunarPhase?color=white)](https://github.com/JcDenis/lunarPhase/blob/master/LICENSE)
 
 ## ABOUT
 
@@ -27,7 +27,7 @@ You should add widget to show lunar phases on your blog.
 
 ## LINKS
 
-* [License](https://github.com/JcDenis/lunarPhase/src/branch/master/LICENSE)
+* [License](https://github.com/JcDenis/lunarPhase/blob/master/LICENSE)
 * [Packages & details](https://github.com/JcDenis/lunarPhase/releases) (or on [Dotaddict](https://plugins.dotaddict.org/dc2/details/lunarPhase))
 * [Sources & contributions](https://github.com/JcDenis/lunarPhase)
 * [Issues & security](https://github.com/JcDenis/lunarPhase/issues)
