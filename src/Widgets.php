@@ -47,17 +47,17 @@ class Widgets
 
     public static function parseWidget(WidgetsElement $w): string
     {
-        if ($w->offline || !$w->checkHomeOnly(App::url()->type)) {
+        if ($w->get('offline') || !$w->checkHomeOnly(App::url()->type)) {
             return '';
         }
 
         $lp = new LunarPhase();
 
         return $w->renderDiv(
-            (bool) $w->content_only,
-            'lunarphase ' . $w->class,
+            (bool) $w->get('content_only'),
+            'lunarphase ' . $w->get('class'),
             '',
-            ($w->title ? $w->renderTitle(Html::escapeHTML($w->title)) : '') .
+            ($w->get('title') ? $w->renderTitle(Html::escapeHTML($w->get('title'))) : '') .
             self::getLive($w, $lp) .
             self::getPrevisions($w, $lp)
         );
@@ -78,11 +78,11 @@ class Widgets
         $res  = '';
 
         # Phase
-        if ($w->phase) {
+        if ($w->get('phase')) {
             $res .= sprintf($li, $live['name'], $live['id']);
         }
         # Illumination
-        if ($w->illumination) {
+        if ($w->get('illumination')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -93,7 +93,7 @@ class Widgets
             );
         }
         # Moon's age
-        if ($w->age) {
+        if ($w->get('age')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -104,7 +104,7 @@ class Widgets
             );
         }
         # Distance from earth
-        if ($w->dist_to_earth) {
+        if ($w->get('dist_to_earth')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -115,7 +115,7 @@ class Widgets
             );
         }
         # Distance from sun
-        if ($w->dist_to_sun) {
+        if ($w->get('dist_to_sun')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -126,7 +126,7 @@ class Widgets
             );
         }
         # Moon's angle
-        if ($w->moon_angle) {
+        if ($w->get('moon_angle')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -137,7 +137,7 @@ class Widgets
             );
         }
         # Sun's angle
-        if ($w->sun_angle) {
+        if ($w->get('sun_angle')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -148,7 +148,7 @@ class Widgets
             );
         }
         # Parallax
-        if ($w->parallax) {
+        if ($w->get('parallax')) {
             $res .= sprintf(
                 $li,
                 sprintf(
@@ -177,7 +177,7 @@ class Widgets
         $li  = '<li class="%s" title="%s">%s</li>';
         $res = '';
 
-        if ($w->previsions) {
+        if ($w->get('previsions')) {
             foreach ($lp->getPrevisions() as $k => $v) {
                 $res .= sprintf($li, $k, $v['name'], self::formatValue('date', (int) $v['date']));
             }

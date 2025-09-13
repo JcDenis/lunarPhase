@@ -37,7 +37,13 @@ class LunarPhase
     public const mParallax = 0.9507;								# parallax at distance a from Earth
     public const synodic   = 29.53058868;							# synodic month (new Moon to new Moon)
 
+    /**
+     * @var     ArrayObject<string, mixed>  $live
+     */
     protected ArrayObject $live;
+    /**
+     * @var     ArrayObject<string, array<string, mixed>>   $previsions
+     */
     protected ArrayObject $previsions;
 
     public function __construct()
@@ -49,11 +55,17 @@ class LunarPhase
         $this->setPrevisions();
     }
 
+    /**
+     * @return  ArrayObject<string, mixed>  $live
+     */
     public function getLive(): ArrayObject
     {
         return $this->live;
     }
 
+    /**
+     * @return  ArrayObject<string, array<string, mixed>>   $previsions
+     */
     public function getPrevisions(): ArrayObject
     {
         return $this->previsions;
