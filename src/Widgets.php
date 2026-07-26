@@ -47,7 +47,7 @@ class Widgets
 
     public static function parseWidget(WidgetsElement $w): string
     {
-        if ($w->get('offline') || !$w->checkHomeOnly(App::url()->type)) {
+        if ($w->get('offline') || !$w->checkHomeOnly(App::url()->getType())) {
             return '';
         }
 
@@ -55,9 +55,9 @@ class Widgets
 
         return $w->renderDiv(
             (bool) $w->get('content_only'),
-            'lunarphase ' . $w->get('class'),
+            'lunarphase' . (is_string($w->get('class')) ? ' ' . $w->get('class') : ''),
             '',
-            ($w->get('title') ? $w->renderTitle(Html::escapeHTML($w->get('title'))) : '') .
+            (is_string($w->get('title')) && !empty($w->get('title')) ? $w->renderTitle(Html::escapeHTML($w->get('title'))) : '') .
             self::getLive($w, $lp) .
             self::getPrevisions($w, $lp)
         );
@@ -203,9 +203,9 @@ class Widgets
         }
 
         $res    = '';
-        $format = App::blog()->settings()->get('system')->get('date_format') . ' - ';
-        $format .= App::blog()->settings()->get('system')->get('time_format');
-        $tz = App::blog()->settings()->get('system')->get('blog_timezone');
+        $format = App::blog()->settings()->get('system')->getStr('date_format', false) . ' - ';
+        $format .= App::blog()->settings()->get('system')->getStr('time_format', false);
+        $tz = App::blog()->settings()->get('system')->getStr('blog_timezone', false);
 
         return match ($type) {
             'int'     => number_format($value, 0),
