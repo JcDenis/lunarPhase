@@ -22,7 +22,7 @@ $this->registerModule(
     'Moon phases',
     'Display the moon phases on a widget',
     'Tomtom, Pierre Van Glabeke and Contributors',
-    '2.0',
+    '2.1',
     [
         'requires'    => [['core', '2.39']],
         'permissions' => 'My',
