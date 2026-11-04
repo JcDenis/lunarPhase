@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\lunarPhase;
 
-use ArrayObject;
 
 /**
  * @brief       lunarPhase main class.
@@ -38,35 +37,32 @@ class LunarPhase
     public const synodic   = 29.53058868;							# synodic month (new Moon to new Moon)
 
     /**
-     * @var     ArrayObject<string, mixed>  $live
+     * @var     array<string, float|string>  $live
      */
-    protected ArrayObject $live;
+    protected array $live = [];
     /**
-     * @var     ArrayObject<string, array<string, mixed>>   $previsions
+     * @var     array<string, array{name: string, date: float}>   $previsions
      */
-    protected ArrayObject $previsions;
+    protected array $previsions = [];
 
     public function __construct()
     {
-        $this->live       = new ArrayObject();
-        $this->previsions = new ArrayObject();
-
         $this->setLive();
         $this->setPrevisions();
     }
 
     /**
-     * @return  ArrayObject<string, mixed>  $live
+     * @return  array<string, float|string>  $live
      */
-    public function getLive(): ArrayObject
+    public function getLive(): array
     {
         return $this->live;
     }
 
     /**
-     * @return  ArrayObject<string, array<string, mixed>>   $previsions
+     * @return  array<string, array{name: string, date: float}>   $previsions
      */
-    public function getPrevisions(): ArrayObject
+    public function getPrevisions(): array
     {
         return $this->previsions;
     }
@@ -149,7 +145,7 @@ class LunarPhase
     {
         $ts_day     = 24                          * 60 * 60;
         $ts_synodic = self::synodic               * $ts_day;
-        $start      = time() - $this->live['age'] * $ts_day;
+        $start      = time() - (float) $this->live['age'] * $ts_day;
 
         $this->previsions['waxing_crescent_moon'] = [
             'name' => __('Waxing crescent moon'),

@@ -191,16 +191,17 @@ class Widgets
     /**
      * Returns value passed in argument with a correct format.
      *
-     * @param   string  $type   Type of convertion
-     * @param   mixed   $value  Value to convert
+     * @param   string              $type   Type of convertion
+     * @param   float|int|string    $value  Value to convert
      *
-     * @return  mixed   Converted value
+     * @return  string   Converted value
      */
-    public static function formatValue(string $type, mixed $value): mixed
+    public static function formatValue(string $type, float|int|string $value): string
     {
         if (!App::blog()->isDefined()) {
-            return null;
+            return '';
         }
+        $num = is_numeric($value) ? (float) $value : 0.0;
 
         $res    = '';
         $format = App::blog()->settings()->get('system')->getStr('date_format', false) . ' - ';
@@ -208,12 +209,12 @@ class Widgets
         $tz = App::blog()->settings()->get('system')->getStr('blog_timezone', false);
 
         return match ($type) {
-            'int'     => number_format($value, 0),
-            'float'   => number_format($value, 2),
-            'percent' => number_format($value * 100, 0),
-            'date'    => Date::str($format, (int) $value, $tz),
-            'deg'     => number_format(($value * (180.0 / M_PI)), 2),
-            default   => $value,
+            'int'     => number_format($num, 0),
+            'float'   => number_format($num, 2),
+            'percent' => number_format($num * 100, 0),
+            'date'    => Date::str($format, (int) $num, $tz),
+            'deg'     => number_format(($num * (180.0 / M_PI)), 2),
+            default   => (string) $value,
         };
     }
 }
