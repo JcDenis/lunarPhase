@@ -7,7 +7,7 @@
     <desc>Display the moon phases on a widget</desc>
     <file>https://github.com/JcDenis/lunarPhase/releases/download/v2.2/plugin-lunarPhase.zip</file>
     <da:dcmin>2.39</da:dcmin>
-    <da:details>https://github.com/JcDenis/lunarPhase/src/branch/master/README.md</da:details>
+    <da:details>https://github.com/JcDenis/lunarPhase/blob/master/README.md</da:details>
     <da:support>https://github.com/JcDenis/lunarPhase/issues</da:support>
   </module>
 </modules>
