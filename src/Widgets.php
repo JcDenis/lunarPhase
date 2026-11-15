@@ -209,12 +209,31 @@ class Widgets
         $tz = App::blog()->settings()->get('system')->getStr('blog_timezone', false);
 
         return match ($type) {
-            'int'     => number_format($num, 0),
-            'float'   => number_format($num, 2),
-            'percent' => number_format($num * 100, 0),
+            'int'     => self::formatNumber($num, 0),
+            'float'   => self::formatNumber($num, 2),
+            'percent' => self::formatNumber($num * 100, 0),
             'date'    => Date::str($format, (int) $num, $tz),
-            'deg'     => number_format(($num * (180.0 / M_PI)), 2),
+            'deg'     => self::formatNumber($num, 2),
             default   => (string) $value,
         };
+    }
+
+    /**
+     * Format a number with the separators of the blog language.
+     */
+    private static function formatNumber(float $num, int $decimals): string
+    {
+        $lang = App::lang()->getLang();
+        if (class_exists('NumberFormatter')) {
+            $fmt = new \NumberFormatter($lang, \NumberFormatter::DECIMAL);
+            $fmt->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $decimals);
+            $fmt->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
+            $res = $fmt->format($num);
+            if (is_string($res)) {
+                return $res;
+            }
+        }
+
+        return $lang === 'en' ? number_format($num, $decimals) : number_format($num, $decimals, ',', "\u{202F}");
     }
 }

@@ -179,6 +179,15 @@ class LunarPhase
             'name' => __('New moon'),
             'date' => $start + $ts_synodic,
         ];
+
+        // Move past phases to next lunation, then sort by date
+        $now = time();
+        foreach ($this->previsions as $k => $v) {
+            if ($v['date'] < $now) {
+                $this->previsions[$k]['date'] = $v['date'] + $ts_synodic;
+            }
+        }
+        uasort($this->previsions, fn (array $a, array $b): int => $a['date'] <=> $b['date']);
     }
 
     private function fixAngle(float $x): float
@@ -203,15 +212,14 @@ class LunarPhase
 
     private function kepler(float $m, float $ecc): float
     {
-        $delta   = null;
         $EPSILON = 1e-6;
 
         $m = $this->toRad($m);
         $e = $m;
-        while (abs((int) $delta) > $EPSILON) {
+        do {
             $delta = $e - $ecc * sin($e) - $m;
             $e -= $delta / (1 - $ecc * cos($e));
-        }
+        } while (abs($delta) > $EPSILON);
 
         return ($e);
     }
