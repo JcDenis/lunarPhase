@@ -1,6 +1,5 @@
 lunarPhase 2.3 - 2026.11.15
 ===========================================================
-* Add Claude to contributors
 * [fix] Angles and parallax values, localized numbers, next previsions only, Kepler equation
 * [fix] Phases images outside #sidebar
 * [docs] Add a user guide in French, with screenshots
