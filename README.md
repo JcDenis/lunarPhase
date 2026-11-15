@@ -12,6 +12,8 @@ _lunarPhase_ is a plugin for the open-source web publishing software called [Dot
 
 > Show lunar phases on a widget.
 
+A [user guide in French](https://github.com/JcDenis/lunarPhase/blob/master/docs/fr/utilisation.md) is available.
+
 ## REQUIREMENTS
 
 * Dotclear 2.39
@@ -27,6 +29,7 @@ You should add widget to show lunar phases on your blog.
 
 ## LINKS
 
+* [User guide (in French)](https://github.com/JcDenis/lunarPhase/blob/master/docs/fr/utilisation.md)
 * [License](https://github.com/JcDenis/lunarPhase/blob/master/LICENSE)
 * [Packages & details](https://github.com/JcDenis/lunarPhase/releases) (or on [Repository](https://dotclear.org/plugin/detail/lunarPhase))
 * [Sources & contributions](https://github.com/JcDenis/lunarPhase)
