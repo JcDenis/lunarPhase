@@ -22,7 +22,7 @@ $this->registerModule(
     'Moon phases',
     'Display the moon phases on a widget',
     'Tomtom, Pierre Van Glabeke and Contributors',
-    '2.2',
+    '2.3',
     [
         'requires'    => [['core', '2.39']],
         'permissions' => 'My',
@@ -30,6 +30,6 @@ $this->registerModule(
         'support'     => 'https://github.com/JcDenis/' . $this->id . '/issues',
         'details'     => 'https://github.com/JcDenis/' . $this->id . '/',
         'repository'  => 'https://raw.githubusercontent.com/JcDenis/' . $this->id . '/master/dcstore.xml',
-        'date'        => '2026-11-04T23:33:59+00:00',
+        'date'        => '2026-11-15T12:51:10+00:00',
     ]
 );
