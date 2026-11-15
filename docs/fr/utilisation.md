@@ -29,7 +29,7 @@ La partie **En direct** donne, au moment de l'affichage :
 
 La partie **Prévisions** liste les dates et heures des prochaines phases : nouvelle lune, premier quartier, pleine lune, dernier quartier, etc. L'heure est celle du fuseau horaire du blog. Au survol d'une ligne, le nom de la phase apparaît.
 
-Les petites images sont ajoutées par la feuille de style du plugin, uniquement dans une zone du thème dont l'identifiant est `sidebar`.
+Les petites images sont ajoutées par la feuille de style du plugin, quelle que soit la zone du thème où se trouve le gadget.
 
 ## Les réglages
 
@@ -46,7 +46,6 @@ Si vous décochez toutes les informations « En direct » et les prévisions, se
 
 ## Bon à savoir
 
-* Les angles de la Lune et du Soleil et la parallaxe sont affichés avec une valeur erronée : par exemple « Angle de la Lune : 28.23 deg » et « Parallaxe : 51.79 deg », alors que la taille apparente de la Lune est d'environ 0,5° et sa parallaxe d'environ 1°. Les valeurs, déjà en degrés, sont converties une seconde fois.
-* Les distances utilisent une virgule comme séparateur de milliers (« 404,265 km »), même en français.
-* La première ligne des prévisions peut être une phase déjà passée.
-* Les images des phases ne s'affichent que si la zone du thème s'appelle `sidebar`.
+* Les nombres suivent la langue du blog : en français, `403 367 km` et `0,49 deg`.
+* La partie « Prévisions » ne liste que des phases à venir.
+* Les angles et la parallaxe sont donnés en degrés : environ 0,5° pour la taille apparente de la Lune et du Soleil, environ 1° pour la parallaxe de la Lune.
