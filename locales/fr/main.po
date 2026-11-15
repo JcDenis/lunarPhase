@@ -47,7 +47,7 @@ msgid "Illumination: %s%%"
 msgstr "Illumination : %s%%"
 
 msgid "Age of moon: %s days"
-msgstr "Age de la Lune : %s jours"
+msgstr "Âge de la Lune : %s jours"
 
 msgid "Distance to earth: %s km"
 msgstr "Distance à la Terre : %s km"
