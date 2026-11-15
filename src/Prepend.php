@@ -41,7 +41,7 @@ class Prepend
 
                 foreach (My::LUNAR_PHASES as $phase => $image) {
                     echo sprintf(
-                        "#sidebar .lunarphase ul li.%s{background:transparent url(%s) no-repeat left 0.2em;padding-left:2em;}\n",
+                        ".lunarphase li.%s{background:transparent url(%s) no-repeat left 0.2em;padding-left:2em;}\n",
                         $phase,
                         My::fileURL('img/' . $image)
                     );
