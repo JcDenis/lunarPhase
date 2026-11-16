@@ -1,21 +1,21 @@
 # lunarPhase : guide d'utilisation
 
-lunarPhase ajoute un gadget qui affiche la phase actuelle de la Lune, ses caractéristiques du moment et les dates des prochaines phases.
+lunarPhase ajoute un widget qui affiche la phase actuelle de la Lune, ses caractéristiques du moment et les dates des prochaines phases.
 
 ## Table des matières
 
-1. [Ajouter le gadget](#ajouter-le-gadget)
+1. [Ajouter le widget](#ajouter-le-widget)
 2. [Les informations affichées](#les-informations-affichées)
 3. [Les réglages](#les-réglages)
 4. [Bon à savoir](#bon-à-savoir)
 
-## Ajouter le gadget
+## Ajouter le widget
 
-Allez dans **Gadgets**, ajoutez « Phases de la Lune » à la zone de votre choix (par exemple « Extra »), puis enregistrez.
+Allez dans **Widgets**, ajoutez « Phases de la Lune » à la zone de votre choix (par exemple « Extra »), puis enregistrez.
 
-Sur le blog, le gadget affiche deux parties : « En direct » et « Prévisions ».
+Sur le blog, le widget affiche deux parties : « En direct » et « Prévisions ».
 
-![Gadget public](img/gadget-public.png)
+![Widget public](img/widget-public.png)
 
 ## Les informations affichées
 
@@ -33,14 +33,14 @@ Les petites images sont ajoutées par la feuille de style du plugin, uniquement 
 
 ## Les réglages
 
-Cliquez sur le nom du gadget pour déplier ses réglages.
+Cliquez sur le nom du widget pour déplier ses réglages.
 
-![Réglages du gadget](img/gadget-reglages.png)
+![Réglages du widget](img/widget-reglages.png)
 
-* **Titre** : le titre du gadget.
+* **Titre** : le titre du widget.
 * Une case par information de la partie « En direct » : phase, illumination, âge, distance à la Terre, distance au Soleil, angle de la Lune, angle du Soleil, parallaxe. Décochez celles que vous ne voulez pas.
 * **Afficher toutes les prévisions** des prochaines phases de la Lune.
-* Les options habituelles des gadgets : page d'accueil seulement, contenu seul, classe CSS, hors ligne.
+* Les options habituelles des widgets : page d'accueil seulement, contenu seul, classe CSS, hors ligne.
 
 Si vous décochez toutes les informations « En direct » et les prévisions, seul le titre reste affiché.
 
